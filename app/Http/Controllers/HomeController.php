@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Announcement;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class HomeController extends Controller
 {
@@ -21,8 +23,13 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request): View
     {
-        return view('home');
+        $user = $request->user();
+        $announcements = $user && $user->isTeacher()
+            ? Announcement::unreadFor($user)->latest()->get()
+            : collect();
+
+        return view('home', compact('announcements'));
     }
 }

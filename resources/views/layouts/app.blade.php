@@ -21,6 +21,7 @@
         href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
         rel="stylesheet">
 
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 
@@ -43,6 +44,11 @@
                         <li class="nav-item">
                             <a class="nav-link {{ request()->routeIs('admin.teachers.*') ? 'active' : '' }}" href="{{ route('admin.teachers.index') }}">
                                 <i class="bi bi-people me-1"></i> {{ __('Teachers') }}
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->routeIs('admin.announcements.*') ? 'active' : '' }}" href="{{ route('admin.announcements.index') }}">
+                                <i class="bi bi-megaphone me-1"></i> {{ __('Announcements') }}
                             </a>
                         </li>
                         @endif
@@ -94,6 +100,7 @@
             @yield('content')
         </main>
     </div>
+    @stack('scripts')
 </body>
 
 </html>
