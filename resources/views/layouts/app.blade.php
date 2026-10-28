@@ -43,12 +43,24 @@
                         @if (Auth::user()->isAdmin())
                         <li class="nav-item">
                             <a class="nav-link {{ request()->routeIs('admin.teachers.*') ? 'active' : '' }}" href="{{ route('admin.teachers.index') }}">
-                                <i class="bi bi-people me-1"></i> {{ __('Teachers') }}
+                                <i class="bi bi-person-video3 me-1"></i> {{ __('Teachers') }}
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link {{ request()->routeIs('admin.announcements.*') ? 'active' : '' }}" href="{{ route('admin.announcements.index') }}">
                                 <i class="bi bi-megaphone me-1"></i> {{ __('Announcements') }}
+                            </a>
+                        </li>
+                        @endif
+                        @if (Auth::user()->isAdmin() || Auth::user()->isTeacher())
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->routeIs('students.*') ? 'active' : '' }}" href="{{ route('students.index') }}">
+                                <i class="bi bi-mortarboard me-1"></i> {{ __('Students') }}
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->routeIs('parents.*') ? 'active' : '' }}" href="{{ route('parents.index') }}">
+                                <i class="bi bi-people me-1"></i> {{ __('Parents') }}
                             </a>
                         </li>
                         @endif

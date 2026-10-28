@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Announcement;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -30,6 +31,20 @@ class HomeController extends Controller
             ? Announcement::unreadFor($user)->latest()->get()
             : collect();
 
-        return view('home', compact('announcements'));
+        $stats = [];
+        if ($user && $user->isAdmin()) {
+            $stats = [
+                'teachers' => User::teacher()->count(),
+                'students' => User::student()->count(),
+                'parents' => User::parent()->count(),
+            ];
+        } elseif ($user && $user->isTeacher()) {
+            $stats = [
+                'students' => $user->managedStudents()->count(),
+                'parents' => $user->managedParents()->count(),
+            ];
+        }
+
+        return view('home', compact('announcements', 'stats'));
     }
 }
