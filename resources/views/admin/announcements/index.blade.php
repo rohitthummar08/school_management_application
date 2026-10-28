@@ -37,6 +37,7 @@
                                     <th scope="col">Title</th>
                                     <th scope="col">Message</th>
                                     <th scope="col">Target Roles</th>
+                                    <th scope="col">Created By</th>
                                     <th scope="col">Dismissals</th>
                                     <th scope="col">Created At</th>
                                     <th scope="col" class="text-end pe-4" style="width: 90px;">Actions</th>
@@ -62,6 +63,13 @@
                                         @endforeach
                                     </td>
                                     <td>
+                                        @if ($announcement->user)
+                                        <span class="fw-semibold text-dark">{{ $announcement->user->name }}</span>
+                                        @else
+                                        <span class="text-muted">-</span>
+                                        @endif
+                                    </td>
+                                    <td>
                                         <span class="badge bg-info-subtle text-info-emphasis border border-info-subtle px-2 py-1">
                                             {{ $announcement->dismissals_count }} closed
                                         </span>
@@ -81,7 +89,7 @@
                                 </tr>
                                 @empty
                                 <tr>
-                                    <td colspan="7" class="text-center py-5">
+                                    <td colspan="8" class="text-center py-5">
                                         <div class="text-muted">
                                             <i class="bi bi-megaphone display-6 d-block mb-2 text-secondary"></i>
                                             <p class="mb-2">No announcements posted yet.</p>

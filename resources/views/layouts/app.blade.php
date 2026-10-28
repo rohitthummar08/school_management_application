@@ -64,6 +64,13 @@
                             </a>
                         </li>
                         @endif
+                        @if (Auth::user()->isTeacher())
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->routeIs('teacher.announcements.*') ? 'active' : '' }}" href="{{ route('teacher.announcements.index') }}">
+                                <i class="bi bi-megaphone me-1"></i> {{ __('Announcements') }}
+                            </a>
+                        </li>
+                        @endif
                         @endauth
                     </ul>
 
