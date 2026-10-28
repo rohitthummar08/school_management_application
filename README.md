@@ -8,6 +8,7 @@ Make sure the following are installed on your system:
 - Laravel 13+
 - Composer
 - A supported database (MySQL, PostgreSQL, or SQLite, depending on your configuration)
+- I used MySQL as database.
 
 ## Installation and Setup
 
